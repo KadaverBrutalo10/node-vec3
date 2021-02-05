@@ -85,16 +85,16 @@ class Vec3 {
   }
 
   distanceTo (other) {
-    const dx = other.x - this.x
-    const dy = other.y - this.y
-    const dz = other.z - this.z
+    var dx = other.x - this.x
+    var dy = other.y - this.y
+    var dz = other.z - this.z
     return Math.sqrt(dx * dx + dy * dy + dz * dz)
   }
 
   distanceSquared (other) {
-    const dx = other.x - this.x
-    const dy = other.y - this.y
-    const dz = other.z - this.z
+    var dx = other.x - this.x
+    var dy = other.y - this.y
+    var dz = other.z - this.z
     return dx * dx + dy * dy + dz * dz
   }
 
@@ -157,20 +157,20 @@ class Vec3 {
   }
 
   xyDistanceTo (other) {
-    const dx = other.x - this.x
-    const dy = other.y - this.y
+    var dx = other.x - this.x
+    var dy = other.y - this.y
     return Math.sqrt(dx * dx + dy * dy)
   }
 
   xzDistanceTo (other) {
-    const dx = other.x - this.x
-    const dz = other.z - this.z
+    var dx = other.x - this.x
+    var dz = other.z - this.z
     return Math.sqrt(dx * dx + dz * dz)
   }
 
   yzDistanceTo (other) {
-    const dy = other.y - this.y
-    const dz = other.z - this.z
+    var dy = other.y - this.y
+    var dz = other.z - this.z
     return Math.sqrt(dy * dy + dz * dz)
   }
 
@@ -185,6 +185,13 @@ class Vec3 {
   toArray () {
     return [this.x, this.y, this.z]
   }
+
+  isBetween (point1, point2) {
+    const pointDistance = new Vec3(Math.abs(point1.x - point2.x), Math.abs(point1.y - point2.y), Math.abs(point1.z - point2.z)),
+      distancePoint1 = new Vec3(Math.abs(point1.x - this.x), Math.abs(point1.y - this.y), Math.abs(point1.z - this.z)),
+      distancePoint2 = new Vec3(Math.abs(point2.x - this.x), Math.abs(point2.y - this.y), Math.abs(point2.z - this.z))
+    return distancePoint1.x + distancePoint2.x === pointDistance.x && distancePoint1.y + distancePoint2.y === pointDistance.y && distancePoint1.z + distancePoint2.z === pointDistance.z
+  }
 }
 
 function v (x, y, z) {
@@ -195,7 +202,7 @@ function v (x, y, z) {
   } else if (typeof x === 'object') {
     return new Vec3(parseFloat(x.x, 10), parseFloat(x.y, 10), parseFloat(x.z, 10))
   } else if (typeof x === 'string' && y == null) {
-    const match = x.match(re)
+    var match = x.match(re)
     if (match) {
       return new Vec3(
         parseFloat(match[1], 10),
@@ -210,7 +217,7 @@ function v (x, y, z) {
 }
 
 function euclideanMod (numerator, denominator) {
-  const result = numerator % denominator
+  var result = numerator % denominator
   return result < 0 ? result + denominator : result
 }
 
