@@ -187,9 +187,9 @@ class Vec3 {
   }
 
   isBetween (point1, point2) {
-    const pointDistance = new Vec3(Math.abs(point1.x - point2.x), Math.abs(point1.y - point2.y), Math.abs(point1.z - point2.z)),
-      distancePoint1 = new Vec3(Math.abs(point1.x - this.x), Math.abs(point1.y - this.y), Math.abs(point1.z - this.z)),
-      distancePoint2 = new Vec3(Math.abs(point2.x - this.x), Math.abs(point2.y - this.y), Math.abs(point2.z - this.z))
+    const pointDistance = new Vec3(point1.x - point2.x, point1.y - point2.y, point1.z - point2.z).abs(),
+          distancePoint1 = new Vec3(point1.x - this.x, point1.y - this.y, point1.z - this.z).abs(),
+          distancePoint2 = new Vec3(point2.x - this.x, point2.y - this.y, point2.z - this.z).abs()
     return distancePoint1.x + distancePoint2.x === pointDistance.x && distancePoint1.y + distancePoint2.y === pointDistance.y && distancePoint1.z + distancePoint2.z === pointDistance.z
   }
 }
